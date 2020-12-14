@@ -11,16 +11,16 @@ if exists("b:current_syntax")
 endif
 syn sync minlines=200
 
-syn region playfountBold start="\*" skip="\\\*" end="\*"
-syn region playfountItalic start="_" skip="\\\*" end="_"
+syn region playfountBold start="\*" skip="\\\*" end="\*" concealends
+syn region playfountItalic start="_" skip="\\\*" end="_" concealends
 syn region playfountCentered matchgroup=playfountCenter start="^\s*> " end=" <$"
 
 syn match playfountTitle "^\s*%\s*.*$"
 syn match playfountDescription "^\s*%%\s*.*$"
 syn match playfountScene "^\s*\(INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \).*$"
 syn match playfountScene "^\s*\(ИНТ\. \|ЭКСТ\. \|ИНТ\./ЭКСТ\. \|ИНТ/ЭКСТ\. \).*$"
-syn match playfountCharacter "^\s*[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*$"
-syn match playfountParenthetical "(.*)"
+syn match playfountParenthetical "(.*)" contained
+syn match playfountCharacter "^\s\+[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*.*$" contains=playfountParenthetical
 syn match playfountTransition "^\s*\L* \(К\|TO\):$"
 syn match playfountTransitionForced "^\s*> .*<\@<!$"
 syn match playfountLyric "^\s*\~ .*$"
@@ -34,12 +34,8 @@ syn match playfountH4 "^#### .*$"
 syn match playfountH5 "^##### .*$"
 syn match playfountH6 "^###### .*$"
 
-" dialogue begins either directly after a playfountCharacter
-syn region playfountDialogue matchgroup=playfountParenthetical
-	\ start="(.*)$" end="^\s*$"
-" or playfountParenthetical
 syn region playfountDialogue matchgroup=playfountCharacter
-	\ start="^\s*[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*$" end="^\s*$"
+	\ start="^\s+[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*.*$" end="^\s*$"
 syn region playfountBoneyard start="/\*" end="\*\/" contains=playfountCont
 syn region playfountNotes start="\[\[" end="\]\]" contains=playfountCont
 
