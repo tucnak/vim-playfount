@@ -1,5 +1,8 @@
-vim-playfount - a vim plugin for Playfount dialect of Fountain language
+vim-playfount - a dialect of Fountain language
 ============================================================
+
+![](screen01.png)
+![](screen02.png)
 
 Based on a bundlified version of Carson Fire's [*vim-fountain*](http://www.vim.org/scripts/script.php?script_id=3880) script.
 
