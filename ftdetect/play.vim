@@ -1,4 +1,4 @@
-au BufRead,BufNewFile *.play set filetype=playft
+au BufRead,BufNewFile *.play* setf play
 
 fun PlayfountFoldexpr()
 	let l:line = getline(v:lnum)
@@ -11,8 +11,8 @@ endfun
 fun PlayfountFoldtext()
 	let l:scene = getline(v:foldstart)
 	let l:n = v:foldend - v:foldstart + 1
-	return printf("%4d § ", l:n) . l:scene
+	return printf("%5d § ", l:n) . l:scene
 endfun
-au FileType playft set foldmethod=expr
-au FileType playft set foldexpr=PlayfountFoldexpr()
-au FileType playft set foldtext=PlayfountFoldtext()
+au FileType play set foldmethod=expr
+au FileType play set foldexpr=PlayfountFoldexpr()
+au FileType play set foldtext=PlayfountFoldtext()
