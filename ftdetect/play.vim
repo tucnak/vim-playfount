@@ -1,6 +1,6 @@
 au BufRead,BufNewFile *.play* setf play
 
-fun PlayfountFoldexpr()
+fun! PlayfountFoldexpr()
 	let l:line = getline(v:lnum)
 	if l:line =~ '^%' || getline(v:lnum+1) =~ '^%'
 		return '0'
@@ -8,7 +8,7 @@ fun PlayfountFoldexpr()
 	let l:rx = '^\(ИНТ\. \|ЭКСТ\. \|ИНТ\./ЭКСТ\. \|ИНТ/ЭКСТ\. \|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \).*$'
 	return l:line =~# l:rx ? '>1' : '='
 endfun
-fun PlayfountFoldtext()
+fun! PlayfountFoldtext()
 	let l:scene = getline(v:foldstart)
 	let l:n = v:foldend - v:foldstart + 1
 	return printf("%5d § ", l:n) . l:scene
