@@ -14,19 +14,22 @@ syn sync minlines=200
 
 syn region playfountBold		start="\*" skip="\\\*" end="\*"
 syn region playfountItalic		start="_" skip="\\\*" end="_"
+syn region playfountParenthetical	start="^\s\+(" end=")$"
 syn region playfountCentered		start="> " end=" <$"
-syn region playfountDialogue		start="^\s+[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*.*$" end="^\s*$"
 					\ matchgroup=playfountCharacter
 syn region playfountBoneyard		start="/\*" end="\*\/" contains=playfountCont
 syn region playfountNotes		start="\[\[" end="\]\]" contains=playfountCont
 
 syn match playfountTitle		"^\s*%\s*.*$"
 syn match playfountDescription		"^\s*%%\s*.*$"
-syn match playfountScene		"^\s*\(INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \).*$"
-syn match playfountScene		"^\s*\(ИНТ\. \|ЭКСТ\. \|ИНТ\./ЭКСТ\. \|ИНТ/ЭКСТ\. \).*$"
-syn match playfountParenthetical	"(.*)" contained
-syn match playfountCharacter		"^\s\+[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*.*$"
-					\ contains=playfountParenthetical
+					" english
+syn match playfountScene		"\v^\s*(INT. |EXT. |INT.\/EXT. |INT\/EXT. )(.*\ze( #(\L|-)*#)|.*$)"
+					" ukrainian
+syn match playfountScene		"\v^\s*(ІНТ. |ЕКСТ. |ІНТ.\/ЕКСТ. |ІНТ\/ЕКСТ. )(.*\ze( #(\L|-)*#)|.*$)"
+					" russian
+syn match playfountScene		"\v^\s*(ИНТ. |ЭКСТ. |ИНТ.\/ЭКСТ. |ИНТ\/ЭКСТ. )(.*\ze( #(\L|-)*#)|.*$)"
+syn match playfountSceneNumber		"\v#(\L|-)*#"
+syn match playfountCharacter		"\v^\t\t(\L)+$"
 syn match playfountTransition		"^\s*\L* \(К\|TO\)\(.*\)\?:$"
 syn match playfountTransition		"^\s*> .*<\@<!$"
 syn match playfountLyric		"^\s*\~ .*$"
@@ -42,12 +45,8 @@ syn match playfountH6			"^###### .*$"
 
 hi def link playfountTitle		title
 hi def link playfountDescription	statement
-hi def link playfountScene		title
-hi def link playfountCharacter		identifier
-hi def link playfountDialogue		statement
-hi def link playfountParenthetical	function
 hi def link playfountTransition		todo
-hi def link playfountLyric		comment
+hi def link playfountLyric		number
 hi def link playfountSynopses		number
 hi def link playfountPagebreak		conditional
 hi def link playfountNotes		comment
@@ -59,9 +58,12 @@ hi def link playfountH4			htmlH4
 hi def link playfountH5			htmlH5
 hi def link playfountH6			htmlH6
 
-hi playfountBold			gui=bold cterm=bold
-hi playfountItalic			gui=italic cterm=italic
-hi playfountCentered			gui=bold,italic,underline cterm=bold,italic
+hi playfountBold			gui=bold
+hi playfountItalic			gui=italic
+hi playfountCentered			gui=bold,italic,underline
 hi playfountScene			gui=bold,underline
+hi playfountSceneNumber			gui=bold,italic
+hi playfountCharacter			gui=bold
+hi playfountParenthetical		gui=italic guifg=darkgray
 
 let b:current_syntax = "play"
