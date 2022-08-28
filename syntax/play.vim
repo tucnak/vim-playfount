@@ -12,8 +12,12 @@ endif
 
 syn sync minlines=200
 
-syn region playfountBold		start="\*" skip="\\\*" end="\*"
-syn region playfountItalic		start="_" skip="\\\*" end="_"
+syn region playfountBold		matchgroup=playfountBolds
+					\ start="\*" skip="\\\*" end="\*"
+					\ concealends
+syn region playfountItalic		matchgroup=playfountItalics
+					\ start="_" skip="\\\*" end="_"
+					\ concealends
 syn region playfountParenthetical	start="^\s\+(" end=")$"
 syn region playfountCentered		start="> " end=" <$"
 					\ matchgroup=playfountCharacter
