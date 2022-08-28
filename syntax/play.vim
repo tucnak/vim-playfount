@@ -27,7 +27,7 @@ syn match playfountScene		"^\s*\(ИНТ\. \|ЭКСТ\. \|ИНТ\./ЭКСТ\. \|�
 syn match playfountParenthetical	"(.*)" contained
 syn match playfountCharacter		"^\s\+[A-ZА-ЯЁё0-9][A-ZА-ЯЁё0-9\-\– ]*.*$"
 					\ contains=playfountParenthetical
-syn match playfountTransition		"^\s*\L* \(К\|TO\):$"
+syn match playfountTransition		"^\s*\L* \(К\|TO\)\(.*\)\?:$"
 syn match playfountTransition		"^\s*> .*<\@<!$"
 syn match playfountLyric		"^\s*\~ .*$"
 syn match playfountSynopses		"^\s*= .*$"
